@@ -20,6 +20,7 @@ const ClueWrapper = styled.div.attrs<ClueWrapperProps>((props) => ({
   cursor: default;
   background-color: ${(props) =>
     props.highlight ? props.highlightBackground : 'transparent'};
+  text-decoration: ${(props) => (props.correct ? 'line-through' : 'initial')};
 `;
 
 /**

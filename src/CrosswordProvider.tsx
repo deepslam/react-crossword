@@ -78,6 +78,8 @@ export const crosswordProviderPropTypes = {
      * background on the active clue
      */
     highlightBackground: PropTypes.string,
+    /** background color for the cells with the correct answer */
+    correctBackground: PropTypes.string,
   }),
 
   /** whether to use browser storage to persist the player's work-in-progress */
@@ -313,6 +315,7 @@ const defaultTheme: CrosswordProviderProps['theme'] = {
   numberColor: 'rgba(0,0,0, 0.25)',
   focusBackground: 'rgb(255,255,0)',
   highlightBackground: 'rgb(255,255,204)',
+  correctBackground: 'rgb(115, 182, 43)',
 };
 
 /**
@@ -531,6 +534,20 @@ const CrosswordProvider = React.forwardRef<
 
           if (complete) {
             notifyAnswerComplete(direction, number, correct, info.answer);
+
+            for (let i = 0; i < info.answer.length; i++) {
+              const checkCell = getCellData(
+                info.row + (across ? 0 : i),
+                info.col + (across ? i : 0)
+              ) as UsedCellData;
+              setGridData(
+                produce((draft) => {
+                  (
+                    draft[checkCell.row][checkCell.col] as UsedCellData
+                  ).hasCorrectClue = correct;
+                })
+              );
+            }
           }
         });
       },

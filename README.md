@@ -15,14 +15,15 @@
 
 Please see the [complete docs](https://react-crossword.jaredreisinger.com) for in-depth details.
 
-- [Install](#install)
-- [Usage](#usage)
-  - [Clue/data format](#cluedata-format)
-- [Styling](#styling)
-- [Player progress events](#player-progress-events)
-  - [Imperative methods](#imperative-methods)
-- [Background](#background)
-- [Contributors ✨](#contributors-)
+- [](#)
+  - [Install](#install)
+  - [Usage](#usage)
+    - [Clue/data format](#cluedata-format)
+  - [Styling](#styling)
+  - [Player progress events](#player-progress-events)
+    - [Imperative methods](#imperative-methods)
+  - [Background](#background)
+  - [Contributors ✨](#contributors-)
 
 ---
 
@@ -92,6 +93,7 @@ One other major difference (and advantage) to this crossword component is that i
 | `textColor`           | `'rgb(0,0,0)'`        | color for answer text (entered by the player)                                                                                                                               |
 | `numberColor`         | `'rgba(0,0,0, 0.25)'` | color for the across/down numbers in the grid                                                                                                                               |
 | `focusBackground`     | `'rgb(255,255,0)'`    | background color for the cell with focus, the one that the player is typing into                                                                                            |
+| `correctBackground`   | `'rgb(115, 182, 43)'` | background color for the cells with the correct answer                                                                                                                      |
 | `highlightBackground` | `'rgb(255,255,204)'`  | background color for the cells in the answer the player is working on, helps indicate in which direction focus will be moving; also used as a background on the active clue |
 
 Note that these values can be provided either via `ThemeProvider`, or directly as a `theme` property on the `Crossword` component itself. (And further, if you're not using styled-components, but want to make use of `ThemeProvider`, this library re-exports `ThemeProvider` so you can pull it from here.)
