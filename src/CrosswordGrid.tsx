@@ -27,6 +27,7 @@ const defaultTheme = {
   numberColor: 'rgba(0,0,0, 0.25)',
   focusBackground: 'rgb(255,255,0)',
   highlightBackground: 'rgb(255,255,204)',
+  correctBackground: 'rgb(115, 182, 43)',
 };
 
 const GridWrapper = styled.div.attrs((/* props */) => ({
@@ -216,6 +217,7 @@ export default function CrosswordGrid({ theme }: CrosswordGridProps) {
                         cellData[currentDirection] === currentNumber
                       }
                       onClick={handleCellClick}
+                      isCorrect={cellData.hasCorrectClue}
                     />
                   ) : undefined
                 )
@@ -229,7 +231,6 @@ export default function CrosswordGrid({ theme }: CrosswordGridProps) {
               onKeyDown={handleInputKeyDown}
               onChange={handleInputChange}
               value=""
-              // onInput={this.handleInput}
               autoComplete="off"
               spellCheck="false"
               autoCorrect="off"

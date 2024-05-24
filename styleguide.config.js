@@ -121,12 +121,8 @@ module.exports = {
         'src/{Crossword,CrosswordProvider,CrosswordGrid,DirectionClues}.tsx',
     },
     {
-      name: 'Installable package (npm)',
-      href: 'https://www.npmjs.com/package/@jaredreisinger/react-crossword',
-    },
-    {
       name: 'Source code (GitHub)',
-      href: 'https://github.com/JaredReisinger/react-crossword',
+      href: 'https://github.com/deepslam/react-crossword',
     },
   ],
 };

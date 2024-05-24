@@ -82,6 +82,8 @@ export type UsedCellData = GridPosition & {
   across?: string;
   /** If present, the clue-number key for the "down" for this cell */
   down?: string;
+  /** Whether the cell is part of a "correct" clue */
+  hasCorrectClue?: boolean;
 };
 
 /**

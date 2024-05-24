@@ -23,6 +23,9 @@ const cellPropTypes = {
 
   /** handler called when the cell is clicked */
   onClick: PropTypes.func,
+
+  /** whether this cell is correct */
+  isCorrect: PropTypes.bool,
 };
 
 export type CellProps = EnhancedProps<
@@ -48,6 +51,7 @@ export default function Cell({
   onClick,
   focus,
   highlight,
+  isCorrect,
 }: CellProps) {
   const { cellSize, cellPadding, cellInner, cellHalf, fontSize } =
     useContext(CrosswordSizeContext);
@@ -58,6 +62,7 @@ export default function Cell({
     textColor,
     numberColor,
     focusBackground,
+    correctBackground,
     highlightBackground,
   } = useContext(ThemeContext);
 
@@ -88,7 +93,9 @@ export default function Cell({
         width={cellInner}
         height={cellInner}
         fill={
-          focus
+          isCorrect
+            ? correctBackground
+            : focus
             ? focusBackground
             : highlight
             ? highlightBackground
@@ -130,6 +137,7 @@ Cell.defaultProps = {
   focus: false,
   highlight: false,
   onClick: null,
+  isCorrect: false,
 };
 
 // export default Cell;

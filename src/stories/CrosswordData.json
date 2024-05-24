@@ -1,0 +1,126 @@
+{
+  "across": {
+    "4": {
+      "clue": "[Noun] a phonetician and father of Alexander Graham Bell (1819-1905)",
+      "answer": "BELL",
+      "row": 11,
+      "col": 2
+    },
+    "5": {
+      "clue": "[Adverb] at the time or occasion immediately following",
+      "answer": "NEXT",
+      "row": 14,
+      "col": 7
+    },
+    "7": {
+      "clue": "[Verb] spend the winter",
+      "answer": "WINTER",
+      "row": 10,
+      "col": 7
+    },
+    "8": {
+      "clue": "[Noun] a male human offspring",
+      "answer": "SON",
+      "row": 7,
+      "col": 0
+    },
+    "9": {
+      "clue": "[Verb] place so as to be noticed",
+      "answer": "POST",
+      "row": 5,
+      "col": 2
+    },
+    "12": {
+      "clue": "[Adjective] very unusual; different in character or quality from the normal or expected",
+      "answer": "OTHER",
+      "row": 3,
+      "col": 5
+    },
+    "15": {
+      "clue": "[Verb] indicate pleasure by purring; characteristic of cats",
+      "answer": "PURR",
+      "row": 2,
+      "col": 9
+    },
+    "16": {
+      "clue": "[Verb] remove adhering flesh from (hides) when preparing leather manufacture",
+      "answer": "FLESH",
+      "row": 12,
+      "col": 5
+    },
+    "18": {
+      "clue": "[Adjective] offering little or no hope",
+      "answer": "BLACK",
+      "row": 5,
+      "col": 8
+    },
+    "19": {
+      "clue": "[Noun] how something is done or how it happens",
+      "answer": "MANNER",
+      "row": 7,
+      "col": 8
+    }
+  },
+  "down": {
+    "1": {
+      "clue": "[Noun] once thought to be one of four elements composing the universe (Empedocles)",
+      "answer": "AIR",
+      "row": 0,
+      "col": 11
+    },
+    "2": {
+      "clue": "[Noun] a soft thin (usually translucent) paper",
+      "answer": "TISSUE",
+      "row": 9,
+      "col": 8
+    },
+    "3": {
+      "clue": "[Noun] a person's experience on a particular occasion",
+      "answer": "TIME",
+      "row": 8,
+      "col": 3
+    },
+    "6": {
+      "clue": "[Adjective] not capable of being collected",
+      "answer": "BAD",
+      "row": 11,
+      "col": 2
+    },
+    "10": {
+      "clue": "[Noun] any of numerous agile ruminants related to sheep but having a beard and straight horns",
+      "answer": "GOAT",
+      "row": 2,
+      "col": 5
+    },
+    "11": {
+      "clue": "[Adjective] of things that make you feel sad",
+      "answer": "SAD",
+      "row": 5,
+      "col": 4
+    },
+    "13": {
+      "clue": "[Noun] the month following March and preceding May",
+      "answer": "APRIL",
+      "row": 1,
+      "col": 9
+    },
+    "14": {
+      "clue": "[Noun] a person considered as a unique individual",
+      "answer": "SELF",
+      "row": 9,
+      "col": 5
+    },
+    "17": {
+      "clue": "[Noun] someone in charge of other people",
+      "answer": "KEEPER",
+      "row": 5,
+      "col": 12
+    },
+    "20": {
+      "clue": "[Verb] make a sweeping movement",
+      "answer": "PAN",
+      "row": 5,
+      "col": 2
+    }
+  }
+}

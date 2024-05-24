@@ -1,7 +1,7 @@
 {
   "name": "@deepslam/react-crossword",
   "homepage": "https://react-crossword.jaredreisinger.com",
-  "version": "5.2.2",
+  "version": "5.2.3",
   "description": "A flexible, responsive, and easy-to-use crossword component for React apps",
   "author": {
     "name": "JaredReisinger",
@@ -42,7 +42,9 @@
     "contributors:check": "all-contributors check",
     "#snyk-protect": "snyk protect",
     "#prepare": "npm run snyk-protect",
-    "prepare": "is-ci || husky install"
+    "prepare": "is-ci || husky install",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "files": [
     "/dist",
@@ -59,7 +61,7 @@
     }
   },
   "lint-staged": {
-    "{src,docs}/**/*.{js,json,css,jsx,ts,tsx}": [
+    "{src,docs}/**/*.{js,css,jsx,ts,tsx}": [
       "stylelint",
       "eslint --fix --quiet --ignore-path .gitignore"
     ]
@@ -74,10 +76,20 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
+    "@chromatic-com/storybook": "^1.4.0",
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
     "@semantic-release/changelog": "^6.0.2",
     "@semantic-release/git": "^10.0.1",
+    "@storybook/addon-essentials": "^8.1.3",
+    "@storybook/addon-interactions": "^8.1.3",
+    "@storybook/addon-links": "^8.1.3",
+    "@storybook/addon-onboarding": "^8.1.3",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.2",
+    "@storybook/blocks": "^8.1.3",
+    "@storybook/react": "^8.1.3",
+    "@storybook/react-webpack5": "^8.1.3",
+    "@storybook/test": "^8.1.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
@@ -99,6 +111,7 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-storybook": "^0.8.0",
     "gh-pages": "^4.0.0",
     "husky": "^8.0.2",
     "is-ci": "^3.0.1",
@@ -115,6 +128,7 @@
     "rimraf": "^3.0.2",
     "semantic-release": "^19.0.5",
     "snyk": "^1.1069.0",
+    "storybook": "^8.1.3",
     "stylelint": "^14.16.0",
     "stylelint-config-prettier": "^9.0.4",
     "stylelint-config-recommended": "^9.0.0",
@@ -130,5 +144,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "snyk": true
+  "snyk": true,
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  }
 }
