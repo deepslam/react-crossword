@@ -44,7 +44,7 @@ export default function DirectionClues({
           complete={complete}
           correct={correct}
         >
-          {clue}
+          <p dangerouslySetInnerHTML={{ __html: clue }} />
         </Clue>
       ))}
     </div>
