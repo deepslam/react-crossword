@@ -14,6 +14,7 @@ import Cell from './Cell';
 
 import { CrosswordContext, CrosswordSizeContext } from './context';
 import { FocusHandler } from './types';
+import CurrentClue from './CurrentClue';
 
 // import {
 // } from './types';
@@ -38,6 +39,8 @@ const GridWrapper = styled.div.attrs((/* props */) => ({
   /* max-width: 60rem; Should the size matter? */
   width: auto;
   flex: 2 1 50%;
+  padding-bottom: 50px;
+  border-radius: 5px;
 `;
 
 const CrosswordGridPropTypes = {
@@ -190,7 +193,15 @@ export default function CrosswordGrid({ theme }: CrosswordGridProps) {
             positioned element for aligning the <input> with the cells in the
             <svg>.
           */}
-          <div style={{ margin: 0, padding: 0, position: 'relative' }}>
+          <div
+            style={{
+              margin: 0,
+              padding: 0,
+              position: 'relative',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
             <svg viewBox={`0 0 ${width} ${height}`}>
               <rect
                 x={0}
@@ -236,6 +247,7 @@ export default function CrosswordGrid({ theme }: CrosswordGridProps) {
               autoCorrect="off"
               style={inputStyle}
             />
+            <CurrentClue />
           </div>
         </GridWrapper>
       </ThemeProvider>
