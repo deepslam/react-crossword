@@ -818,6 +818,11 @@ const CrosswordProvider = React.forwardRef<
 
     // When the clues *input* data changes, reset/reload the player data
     useEffect(() => {
+      console.log('load guesses');
+      console.log('masterClues', masterClues);
+      console.log('masterGridData', masterGridData);
+      console.log('useStorage', useStorage);
+      console.log('storageKey', storageKey);
       // deep-clone the grid data...
       const newGridData = masterGridData.map((row) =>
         row.map((cell) => ({ ...cell }))
@@ -872,6 +877,7 @@ const CrosswordProvider = React.forwardRef<
         return;
       }
 
+      console.log('save guesses', gridData);
       saveGuesses(gridData, storageKey || defaultStorageKey);
     }, [gridData, storageKey, useStorage]);
 
@@ -1011,6 +1017,7 @@ const CrosswordProvider = React.forwardRef<
           );
 
           if (useStorage) {
+            console.log('clear guesses');
             clearGuesses(storageKey || defaultStorageKey);
           }
         },
