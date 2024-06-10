@@ -220,18 +220,20 @@ export function serializeGuesses(gridData: GuessData) {
 }
 
 export function loadGuesses(gridData: GuessData, storageKey: string) {
+  console.log('loading guesses');
   const { localStorage } = window;
   if (!localStorage) {
     return;
   }
 
   const saveRaw = localStorage.getItem(storageKey);
+  console.log('saveRaw', saveRaw);
   if (!saveRaw) {
     return;
   }
 
   const saveData = JSON.parse(saveRaw);
-
+  console.log('saveData', saveData);
   // TODO: check date for expiration?
   deserializeGuesses(gridData, saveData.guesses);
 }

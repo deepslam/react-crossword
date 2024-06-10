@@ -819,6 +819,8 @@ const CrosswordProvider = React.forwardRef<
     // When the clues *input* data changes, reset/reload the player data
     useEffect(() => {
       console.log('load guesses');
+      console.log('masterClues', masterClues);
+      console.log('masterGridData', masterGridData);
       // deep-clone the grid data...
       const newGridData = masterGridData.map((row) =>
         row.map((cell) => ({ ...cell }))
