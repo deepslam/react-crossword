@@ -234,7 +234,7 @@ export function loadGuesses(gridData: GuessData, storageKey: string) {
   }
 
   const saveData = JSON.parse(saveRaw);
-  console.log('saveData', saveData);
+  console.log('loadGuesses saved data', saveData);
   // TODO: check date for expiration?
   deserializeGuesses(gridData, saveData.guesses);
 }

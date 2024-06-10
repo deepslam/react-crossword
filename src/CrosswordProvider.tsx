@@ -877,6 +877,7 @@ const CrosswordProvider = React.forwardRef<
         return;
       }
 
+      console.log('save guesses', gridData);
       saveGuesses(gridData, storageKey || defaultStorageKey);
     }, [gridData, storageKey, useStorage]);
 
