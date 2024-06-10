@@ -821,6 +821,8 @@ const CrosswordProvider = React.forwardRef<
       console.log('load guesses');
       console.log('masterClues', masterClues);
       console.log('masterGridData', masterGridData);
+      console.log('useStorage', useStorage);
+      console.log('storageKey', storageKey);
       // deep-clone the grid data...
       const newGridData = masterGridData.map((row) =>
         row.map((cell) => ({ ...cell }))

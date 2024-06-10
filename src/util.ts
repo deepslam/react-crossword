@@ -188,13 +188,14 @@ export function clearGuesses(storageKey: string) {
 }
 
 export function saveGuesses(gridData: GuessData, storageKey: string) {
+  console.log('saveGuesses', gridData, storageKey);
   const { localStorage } = window;
   if (!localStorage) {
     return;
   }
 
   const guesses = serializeGuesses(gridData);
-
+  console.log('saved guesses', guesses);
   const saveData = {
     date: Date.now(),
     guesses,
