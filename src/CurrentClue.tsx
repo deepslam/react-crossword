@@ -28,7 +28,7 @@ function CurrentClue() {
   if (!clue) {
     return null;
   }
-  return <CurrentClueWrapper>{clue.clue}</CurrentClueWrapper>;
+  return <CurrentClueWrapper dangerouslySetInnerHTML={{ __html: clue.clue }} />;
 }
 
 export default CurrentClue;
