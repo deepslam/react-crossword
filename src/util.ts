@@ -233,6 +233,11 @@ export function loadGuesses(gridData: GuessData, storageKey: string) {
     return;
   }
 
+  if (Object.keys(saveRaw).length === 0) {
+    // There is nothing to restore
+    return;
+  }
+
   const saveData = JSON.parse(saveRaw);
   console.log('loadGuesses saved data', saveData);
   // TODO: check date for expiration?
