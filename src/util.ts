@@ -194,6 +194,11 @@ export function saveGuesses(gridData: GuessData, storageKey: string) {
     return;
   }
 
+  if (gridData.length === 0) {
+    // Do not save empty guesses
+    return;
+  }
+
   const guesses = serializeGuesses(gridData);
   console.log('saved guesses', guesses);
   const saveData = {
