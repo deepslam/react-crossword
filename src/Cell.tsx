@@ -1,9 +1,11 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeContext } from 'styled-components';
+import { Popover, ArrowContainer } from 'react-tiny-popover';
 
-import { CrosswordSizeContext } from './context';
+import { CrosswordContext, CrosswordSizeContext } from './context';
 import type { UsedCellData, EnhancedProps } from './types';
+import CurrentClue from './CurrentClue';
 
 const cellPropTypes = {
   /** the data specific to this cell */
@@ -65,6 +67,7 @@ export default function Cell({
     correctBackground,
     highlightBackground,
   } = useContext(ThemeContext);
+  const { selectedNumber } = useContext(CrosswordContext);
 
   const handleClick = useCallback<React.MouseEventHandler>(
     (event) => {
@@ -76,58 +79,93 @@ export default function Cell({
     [cellData, onClick]
   );
 
+  const [isPopoverOpened, setIsPopoverOpened] = useState<boolean>(false);
   const { row, col, guess, number, answer } = cellData;
+
+  useEffect(() => {
+    if (!number) return;
+    if (number !== selectedNumber) {
+      if (isPopoverOpened) {
+        setIsPopoverOpened(false);
+      }
+      return;
+    }
+
+    setIsPopoverOpened(highlight === true);
+  }, [highlight, selectedNumber]);
 
   const x = col * cellSize;
   const y = row * cellSize;
 
   return (
-    <g
-      onClick={handleClick}
-      style={{ cursor: 'default', fontSize: `${fontSize}px` }}
-      className="clue-cell"
-    >
-      <rect
-        x={x + cellPadding}
-        y={y + cellPadding}
-        width={cellInner}
-        height={cellInner}
-        fill={
-          isCorrect
-            ? correctBackground
-            : focus
-            ? focusBackground
-            : highlight
-            ? highlightBackground
-            : cellBackground
-        }
-        stroke={cellBorder}
-        strokeWidth={cellSize / 50}
-      />
-      {number && (
-        <text
-          x={x + cellPadding * 4}
-          y={y + cellPadding * 4}
-          textAnchor="start"
-          dominantBaseline="hanging"
-          style={{ fontSize: '50%', fill: numberColor }}
+    <Popover
+      isOpen={isPopoverOpened}
+      positions={['top']}
+      onClickOutside={() => setIsPopoverOpened(false)}
+      padding={5}
+      // eslint-disable-next-line react/no-unstable-nested-components
+      content={({ position, childRect, popoverRect }) => (
+        <ArrowContainer
+          position={position}
+          childRect={childRect}
+          popoverRect={popoverRect}
+          arrowSize={10}
+          arrowColor="black"
+          arrowStyle={{ opacity: 0.7 }}
+          className="popover-arrow-container"
+          arrowClassName="popover-arrow"
         >
-          {number}
-        </text>
+          <CurrentClue />
+        </ArrowContainer>
       )}
-      <text
-        x={x + cellHalf}
-        y={y + cellHalf + 1} // +1 for visual alignment?
-        textAnchor="middle"
-        dominantBaseline="middle"
-        style={{ fill: textColor }}
-        className={
-          answer === guess ? 'guess-text-correct' : 'guess-text-incorrect'
-        }
+    >
+      <g
+        onClick={handleClick}
+        style={{ cursor: 'default', fontSize: `${fontSize}px` }}
+        className="clue-cell"
       >
-        {guess}
-      </text>
-    </g>
+        <rect
+          x={x + cellPadding}
+          y={y + cellPadding}
+          width={cellInner}
+          height={cellInner}
+          fill={
+            isCorrect
+              ? correctBackground
+              : focus
+              ? focusBackground
+              : highlight
+              ? highlightBackground
+              : cellBackground
+          }
+          stroke={cellBorder}
+          strokeWidth={cellSize / 50}
+        />
+        {number && (
+          <text
+            x={x + cellPadding * 4}
+            y={y + cellPadding * 4}
+            textAnchor="start"
+            dominantBaseline="hanging"
+            style={{ fontSize: '50%', fill: numberColor }}
+          >
+            {number}
+          </text>
+        )}
+        <text
+          x={x + cellHalf}
+          y={y + cellHalf + 1} // +1 for visual alignment?
+          textAnchor="middle"
+          dominantBaseline="middle"
+          style={{ fill: textColor }}
+          className={
+            answer === guess ? 'guess-text-correct' : 'guess-text-incorrect'
+          }
+        >
+          {guess}
+        </text>
+      </g>
+    </Popover>
   );
 }
 

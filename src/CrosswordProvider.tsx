@@ -424,6 +424,11 @@ const CrosswordProvider = React.forwardRef<
           return;
         }
 
+        // Don't change correct clues
+        if (cell.hasCorrectClue) {
+          return;
+        }
+
         // update the gridData with the guess
         setGridData(
           produce((draft) => {

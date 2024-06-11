@@ -193,6 +193,11 @@ export function saveGuesses(gridData: GuessData, storageKey: string) {
     return;
   }
 
+  if (gridData.length === 0) {
+    // Do not save empty guesses
+    return;
+  }
+
   const guesses = serializeGuesses(gridData);
 
   const saveData = {
@@ -230,8 +235,12 @@ export function loadGuesses(gridData: GuessData, storageKey: string) {
     return;
   }
 
-  const saveData = JSON.parse(saveRaw);
+  if (Object.keys(saveRaw).length === 0) {
+    // There is nothing to restore
+    return;
+  }
 
+  const saveData = JSON.parse(saveRaw);
   // TODO: check date for expiration?
   deserializeGuesses(gridData, saveData.guesses);
 }

@@ -5,15 +5,13 @@ import { CrosswordContext } from './context';
 const CurrentClueWrapper = styled.div.attrs((/* props */) => ({
   className: 'current clue wrapper',
 }))`
-  width: 100%;
-  padding: 7px;
-  height: 50px;
+  width: 300px;
+  padding: 12px;
+  border-radius: 5px;
+  height: auto;
   box-sizing: border-box;
-  bottom: -50px;
-  left: 0;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  position: absolute;
 `;
 
 function CurrentClue() {
