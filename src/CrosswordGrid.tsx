@@ -2,22 +2,17 @@ import {
   useCallback,
   useContext,
   useEffect,
-  // useImperativeHandle,
   useMemo,
   useRef,
+  useState,
 } from 'react';
 import PropTypes, { InferProps } from 'prop-types';
-
 import styled, { ThemeContext, ThemeProvider } from 'styled-components';
 
 import Cell from './Cell';
 
 import { CrosswordContext, CrosswordSizeContext } from './context';
 import { FocusHandler } from './types';
-import CurrentClue from './CurrentClue';
-
-// import {
-// } from './types';
 
 const defaultTheme = {
   columnBreakpoint: '768px',
@@ -99,10 +94,14 @@ export default function CrosswordGrid({ theme }: CrosswordGridProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const contextTheme = useContext(ThemeContext);
+  const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
 
   // focus and movement
   const focus = useCallback<FocusHandler>(() => {
     // console.log('CrosswordGrid.focus()', { haveRef: !!inputRef.current });
+    if (!isPopoverOpen) {
+      setIsPopoverOpen(true);
+    }
     inputRef.current?.focus();
   }, []);
 
@@ -247,7 +246,6 @@ export default function CrosswordGrid({ theme }: CrosswordGridProps) {
               autoCorrect="off"
               style={inputStyle}
             />
-            <CurrentClue />
           </div>
         </GridWrapper>
       </ThemeProvider>

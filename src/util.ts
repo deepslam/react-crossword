@@ -188,7 +188,6 @@ export function clearGuesses(storageKey: string) {
 }
 
 export function saveGuesses(gridData: GuessData, storageKey: string) {
-  console.log('saveGuesses', gridData, storageKey);
   const { localStorage } = window;
   if (!localStorage) {
     return;
@@ -200,7 +199,7 @@ export function saveGuesses(gridData: GuessData, storageKey: string) {
   }
 
   const guesses = serializeGuesses(gridData);
-  console.log('saved guesses', guesses);
+
   const saveData = {
     date: Date.now(),
     guesses,
@@ -226,14 +225,12 @@ export function serializeGuesses(gridData: GuessData) {
 }
 
 export function loadGuesses(gridData: GuessData, storageKey: string) {
-  console.log('loading guesses');
   const { localStorage } = window;
   if (!localStorage) {
     return;
   }
 
   const saveRaw = localStorage.getItem(storageKey);
-  console.log('saveRaw', saveRaw);
   if (!saveRaw) {
     return;
   }
@@ -244,7 +241,6 @@ export function loadGuesses(gridData: GuessData, storageKey: string) {
   }
 
   const saveData = JSON.parse(saveRaw);
-  console.log('loadGuesses saved data', saveData);
   // TODO: check date for expiration?
   deserializeGuesses(gridData, saveData.guesses);
 }
