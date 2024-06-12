@@ -6,6 +6,8 @@ const CurrentClueWrapper = styled.div.attrs((/* props */) => ({
   className: 'current clue wrapper',
 }))`
   width: 300px;
+  max-height: 200px;
+  overflow-y: auto;
   padding: 12px;
   border-radius: 5px;
   height: auto;

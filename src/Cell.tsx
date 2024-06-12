@@ -7,6 +7,8 @@ import { CrosswordContext, CrosswordSizeContext } from './context';
 import type { UsedCellData, EnhancedProps } from './types';
 import CurrentClue from './CurrentClue';
 
+let previousNumber = '';
+
 const cellPropTypes = {
   /** the data specific to this cell */
   cellData: PropTypes.shape({
@@ -67,7 +69,8 @@ export default function Cell({
     correctBackground,
     highlightBackground,
   } = useContext(ThemeContext);
-  const { selectedNumber } = useContext(CrosswordContext);
+  const { selectedNumber, selectedDirection, selectedPosition } =
+    useContext(CrosswordContext);
 
   const handleClick = useCallback<React.MouseEventHandler>(
     (event) => {
@@ -84,15 +87,16 @@ export default function Cell({
 
   useEffect(() => {
     if (!number) return;
-    if (number !== selectedNumber) {
+
+    if (previousNumber !== selectedNumber && previousNumber !== '') {
       if (isPopoverOpened) {
         setIsPopoverOpened(false);
       }
-      return;
     }
 
     setIsPopoverOpened(highlight === true);
-  }, [highlight, selectedNumber]);
+    previousNumber = selectedNumber;
+  }, [selectedNumber, selectedDirection, selectedPosition]);
 
   const x = col * cellSize;
   const y = row * cellSize;
