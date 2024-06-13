@@ -1034,13 +1034,14 @@ const CrosswordProvider = React.forwardRef<
 
         openRandomCell: () => {
           const closedCells = masterGridData
-            .filter((rowData) =>
-              rowData.filter(
-                (cellData) =>
-                  cellData.used &&
-                  !cellData.hasCorrectClue &&
-                  cellData.guess === undefined
-              )
+            .filter(
+              (rowData) =>
+                rowData.filter(
+                  (cellData) =>
+                    cellData.used &&
+                    !cellData.hasCorrectClue &&
+                    cellData.guess === undefined
+                ).length > 0
             )
             .flat();
           console.log('closedCells', closedCells);
