@@ -1033,9 +1033,11 @@ const CrosswordProvider = React.forwardRef<
         },
 
         openRandomCell: () => {
+          // eslint-disable-next-line no-debugger
+          debugger;
           const closedCells = masterGridData
             .filter((rowData) =>
-              rowData.some(
+              rowData.filter(
                 (cellData) =>
                   cellData.used &&
                   !cellData.hasCorrectClue &&
