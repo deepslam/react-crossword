@@ -303,6 +303,11 @@ export interface CrosswordProviderImperative {
    * @since 4.1.0
    */
   setGuess: (row: number, col: number, guess: string) => void;
+
+  /**
+   * Opens a random cell in the crossword
+   */
+  openRandomCell: () => void;
 }
 
 const defaultTheme: CrosswordProviderProps['theme'] = {
@@ -1024,6 +1029,36 @@ const CrosswordProvider = React.forwardRef<
 
           if (useStorage) {
             clearGuesses(storageKey || defaultStorageKey);
+          }
+        },
+
+        openRandomCell: () => {
+          const closedCells = masterGridData
+            .filter((rowData) =>
+              rowData.some(
+                (cellData) =>
+                  cellData.used &&
+                  !cellData.hasCorrectClue &&
+                  cellData.guess === undefined
+              )
+            )
+            .flat();
+
+          if (closedCells.length === 0) {
+            throw new Error('No more cells to open!');
+          }
+
+          const randomCell =
+            closedCells[Math.floor(Math.random() * closedCells.length)];
+          console.log(randomCell);
+          if (!randomCell) {
+            throw new Error('No more cells to open!');
+          }
+
+          if (randomCell.used) {
+            setCellCharacter(randomCell.row, randomCell.col, randomCell.answer);
+          } else {
+            throw new Error('This cell is not used!');
           }
         },
 
