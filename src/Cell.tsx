@@ -1,13 +1,10 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeContext } from 'styled-components';
-import { Popover, ArrowContainer } from 'react-tiny-popover';
 
 import { CrosswordContext, CrosswordSizeContext } from './context';
 import type { UsedCellData, EnhancedProps } from './types';
-import CurrentClue from './CurrentClue';
-
-let previousNumber = '';
+import CluePopover from './CluePopover';
 
 const cellPropTypes = {
   /** the data specific to this cell */
@@ -69,7 +66,7 @@ export default function Cell({
     correctBackground,
     highlightBackground,
   } = useContext(ThemeContext);
-  const { selectedNumber, selectedDirection, selectedPosition } =
+  const { selectedNumber, selectedPosition, selectedDirection } =
     useContext(CrosswordContext);
 
   const handleClick = useCallback<React.MouseEventHandler>(
@@ -83,45 +80,34 @@ export default function Cell({
   );
 
   const [isPopoverOpened, setIsPopoverOpened] = useState<boolean>(false);
-  const { row, col, guess, number, answer } = cellData;
+  const { row, col, guess, number, answer, across, down } = cellData;
 
   useEffect(() => {
-    if (!number) return;
-
-    if (previousNumber !== selectedNumber && previousNumber !== '') {
-      if (isPopoverOpened) {
-        setIsPopoverOpened(false);
-      }
+    if (!highlight && !focus) {
+      setIsPopoverOpened(false);
+      return;
     }
 
-    setIsPopoverOpened(highlight === true);
-    previousNumber = selectedNumber;
-  }, [selectedNumber, selectedDirection, selectedPosition]);
+    switch (selectedDirection) {
+      case 'across':
+        setIsPopoverOpened(focus === true && across === selectedNumber);
+        break;
+      case 'down':
+        setIsPopoverOpened(focus === true && down === selectedNumber);
+        break;
+      default:
+        setIsPopoverOpened(false);
+    }
+  }, [focus, selectedNumber, selectedDirection, selectedPosition]);
 
   const x = col * cellSize;
   const y = row * cellSize;
 
   return (
-    <Popover
-      isOpen={isPopoverOpened}
-      positions={['top']}
+    <CluePopover
+      displayPopover={isPopoverOpened}
+      withPopover={number !== undefined}
       onClickOutside={() => setIsPopoverOpened(false)}
-      padding={5}
-      // eslint-disable-next-line react/no-unstable-nested-components
-      content={({ position, childRect, popoverRect }) => (
-        <ArrowContainer
-          position={position}
-          childRect={childRect}
-          popoverRect={popoverRect}
-          arrowSize={10}
-          arrowColor="black"
-          arrowStyle={{ opacity: 0.7 }}
-          className="popover-arrow-container"
-          arrowClassName="popover-arrow"
-        >
-          <CurrentClue />
-        </ArrowContainer>
-      )}
     >
       <g
         onClick={handleClick}
@@ -169,7 +155,7 @@ export default function Cell({
           {guess}
         </text>
       </g>
-    </Popover>
+    </CluePopover>
   );
 }
 
