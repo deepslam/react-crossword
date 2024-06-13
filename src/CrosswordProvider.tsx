@@ -1033,8 +1033,6 @@ const CrosswordProvider = React.forwardRef<
         },
 
         openRandomCell: () => {
-          // eslint-disable-next-line no-debugger
-          debugger;
           const closedCells = masterGridData
             .filter((rowData) =>
               rowData.filter(
@@ -1045,7 +1043,7 @@ const CrosswordProvider = React.forwardRef<
               )
             )
             .flat();
-
+          console.log('closedCells', closedCells);
           if (closedCells.length === 0) {
             throw new Error('No more cells to open!');
           }
