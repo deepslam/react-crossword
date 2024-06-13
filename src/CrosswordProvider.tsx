@@ -1033,22 +1033,18 @@ const CrosswordProvider = React.forwardRef<
         },
 
         openRandomCell: () => {
-          /*
-          const closedCells = masterGridData
-            .filter(
-              (rowData) =>
-                rowData.filter(
-                  (cellData) =>
-                    cellData.used &&
-                    !cellData.hasCorrectClue &&
-                    cellData.guess === undefined
-                ).length > 0
-            )
-            .flat();
-            */
-          const closedCells = masterGridData.filter((rowData) =>
-            rowData.filter((cellData) => cellData.used === true)
-          );
+          const closedCells: CellData[] = [];
+          masterGridData.forEach((rowData) => {
+            rowData.forEach((cellData) => {
+              if (
+                cellData.used &&
+                !cellData.guess &&
+                !cellData.hasCorrectClue
+              ) {
+                closedCells.push(cellData);
+              }
+            });
+          });
           console.log('closedCells', closedCells);
           if (closedCells.length === 0) {
             throw new Error('No more cells to open!');
@@ -1056,13 +1052,21 @@ const CrosswordProvider = React.forwardRef<
 
           const randomCell =
             closedCells[Math.floor(Math.random() * closedCells.length)];
-          console.log(randomCell);
+
           if (!randomCell) {
             throw new Error('No more cells to open!');
           }
 
           if (randomCell.used) {
             setCellCharacter(randomCell.row, randomCell.col, randomCell.answer);
+            setGridData(
+              // eslint-disable-next-line no-loop-func
+              produce((draft) => {
+                (
+                  draft[randomCell.row][randomCell.col] as UsedCellData
+                ).hasCorrectClue = true;
+              })
+            );
           } else {
             throw new Error('This cell is not used!');
           }
