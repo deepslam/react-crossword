@@ -61,6 +61,8 @@ rules:
   react/jsx-filename-extension:
     - error
     - extensions: [.jsx, .tsx]
+  react/require-default-props:
+    - off
   react/jsx-props-no-spreading: off
   # until I figure out how to omit the React import, we need to ignore the lint
   # issues with it!
