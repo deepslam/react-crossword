@@ -1034,7 +1034,7 @@ const CrosswordProvider = React.forwardRef<
 
         openRandomCell: () => {
           const closedCells: CellData[] = [];
-          masterGridData.forEach((rowData) => {
+          gridData.forEach((rowData) => {
             rowData.forEach((cellData) => {
               if (
                 cellData.used &&
