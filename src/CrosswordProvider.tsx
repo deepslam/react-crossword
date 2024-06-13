@@ -490,6 +490,7 @@ const CrosswordProvider = React.forwardRef<
 
         // check all the cells for both across and down answers that use this
         // cell
+        let correctClueWasFound = false;
         bothDirections.forEach((direction) => {
           const across = isAcross(direction);
           const number = cell[direction];
@@ -539,19 +540,25 @@ const CrosswordProvider = React.forwardRef<
 
           if (complete) {
             notifyAnswerComplete(direction, number, correct, info.answer);
+            if (!correctClueWasFound && correct) {
+              correctClueWasFound = true;
+            }
 
             for (let i = 0; i < info.answer.length; i++) {
               const checkCell = getCellData(
                 info.row + (across ? 0 : i),
                 info.col + (across ? i : 0)
               ) as UsedCellData;
-              setGridData(
-                produce((draft) => {
-                  (
-                    draft[checkCell.row][checkCell.col] as UsedCellData
-                  ).hasCorrectClue = correct;
-                })
-              );
+              if (!checkCell.hasCorrectClue) {
+                setGridData(
+                  // eslint-disable-next-line no-loop-func
+                  produce((draft) => {
+                    (
+                      draft[checkCell.row][checkCell.col] as UsedCellData
+                    ).hasCorrectClue = correctClueWasFound;
+                  })
+                );
+              }
             }
           }
         });
