@@ -1045,7 +1045,7 @@ const CrosswordProvider = React.forwardRef<
               }
             });
           });
-          console.log('closedCells', closedCells);
+
           if (closedCells.length === 0) {
             throw new Error('No more cells to open!');
           }
@@ -1066,6 +1066,11 @@ const CrosswordProvider = React.forwardRef<
                   draft[randomCell.row][randomCell.col] as UsedCellData
                 ).hasCorrectClue = true;
               })
+            );
+            moveTo(
+              randomCell.row,
+              randomCell.col,
+              randomCell.across ? 'across' : 'down'
             );
           } else {
             throw new Error('This cell is not used!');
