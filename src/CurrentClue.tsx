@@ -3,17 +3,25 @@ import styled from 'styled-components';
 import { CrosswordContext } from './context';
 
 const CurrentClueWrapper = styled.div.attrs((/* props */) => ({
-  className: 'current clue wrapper',
+  className: 'current-clue',
 }))`
   width: 300px;
   max-height: 200px;
   overflow-y: auto;
-  padding: 12px;
+  padding: 15px;
   border-radius: 5px;
   height: auto;
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.8);
+  font-size: 12px;
   color: white;
+
+  @media (max-width: ${(props) => props.theme.columnBreakpoint}) {
+    width: 200px;
+    max-height: 220px;
+    padding: 10px;
+    font-size: 10px;
+  }
 `;
 
 function CurrentClue() {
