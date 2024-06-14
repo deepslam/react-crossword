@@ -120,6 +120,11 @@ const Crossword = React.forwardRef<CrosswordImperative, CrosswordProps>(
         isCrosswordCorrect: () => !!providerRef.current?.isCrosswordCorrect(),
 
         /**
+         * Opens a random cell in the crossword
+         */
+        openRandomCell: () => providerRef.current?.openRandomCell(),
+
+        /**
          * Sets the “guess” character for a specific grid position.
          *
          * @since 4.1.0
