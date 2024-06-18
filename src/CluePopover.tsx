@@ -38,6 +38,7 @@ const CluePopover: React.FC<CluePopoverProps> = ({
           arrowSize={10}
           arrowColor="black"
           arrowStyle={{ opacity: 0.7 }}
+          style={{ zIndex: 100 }}
           className="popover-arrow-container"
           arrowClassName="popover-arrow"
         >
