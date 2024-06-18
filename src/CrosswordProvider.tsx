@@ -303,6 +303,11 @@ export interface CrosswordProviderImperative {
    * @since 4.1.0
    */
   setGuess: (row: number, col: number, guess: string) => void;
+
+  /**
+   * Opens a random cell in the crossword
+   */
+  openRandomCell: () => void;
 }
 
 const defaultTheme: CrosswordProviderProps['theme'] = {
@@ -1027,6 +1032,51 @@ const CrosswordProvider = React.forwardRef<
           }
         },
 
+        openRandomCell: () => {
+          const closedCells: CellData[] = [];
+          gridData.forEach((rowData) => {
+            rowData.forEach((cellData) => {
+              if (
+                cellData.used &&
+                !cellData.guess &&
+                !cellData.hasCorrectClue
+              ) {
+                closedCells.push(cellData);
+              }
+            });
+          });
+
+          if (closedCells.length === 0) {
+            throw new Error('No more cells to open!');
+          }
+
+          const randomCell =
+            closedCells[Math.floor(Math.random() * closedCells.length)];
+
+          if (!randomCell) {
+            throw new Error('No more cells to open!');
+          }
+
+          if (randomCell.used) {
+            setCellCharacter(randomCell.row, randomCell.col, randomCell.answer);
+            setGridData(
+              // eslint-disable-next-line no-loop-func
+              produce((draft) => {
+                (
+                  draft[randomCell.row][randomCell.col] as UsedCellData
+                ).hasCorrectClue = true;
+              })
+            );
+            moveTo(
+              randomCell.row,
+              randomCell.col,
+              randomCell.across ? 'across' : 'down'
+            );
+          } else {
+            throw new Error('This cell is not used!');
+          }
+        },
+
         /**
          * Fills all the answers in the grid and calls the `onLoadedCorrect`
          * callback with _**every**_ answer.
@@ -1038,6 +1088,7 @@ const CrosswordProvider = React.forwardRef<
                 rowData.forEach((cellData) => {
                   if (cellData.used) {
                     cellData.guess = cellData.answer;
+                    cellData.hasCorrectClue = true;
                   }
                 });
               });
