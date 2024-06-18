@@ -26,7 +26,8 @@ const CluePopover: React.FC<CluePopoverProps> = ({
   return (
     <Popover
       isOpen={displayPopover}
-      positions={['top']}
+      positions={['top', 'bottom', 'left', 'right']}
+      containerStyle={{ zIndex: '100' }}
       onClickOutside={onClickOutside}
       padding={5}
       // eslint-disable-next-line react/no-unstable-nested-components
