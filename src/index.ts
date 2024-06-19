@@ -7,6 +7,8 @@ import Cell from './Cell';
 
 import Clue from './Clue';
 
+import CurrentClue from './CurrentClue';
+
 import DirectionClues from './DirectionClues';
 
 import Crossword, { CrosswordImperative, CrosswordProps } from './Crossword';
@@ -48,6 +50,7 @@ export {
   GridPosition,
   ThemeProvider,
   useIpuz,
+  CurrentClue,
 };
 
 export default Crossword;
