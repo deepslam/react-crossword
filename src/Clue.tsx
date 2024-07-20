@@ -42,7 +42,7 @@ export default function Clue({
     direction: Direction;
   }
 >) {
-  const { hightlightClueBackground } = useContext(ThemeContext);
+  const { highlightClueBackground } = useContext(ThemeContext);
   const { focused, selectedDirection, selectedNumber, handleClueSelected } =
     useContext(CrosswordContext);
 
@@ -56,7 +56,7 @@ export default function Clue({
 
   return (
     <ClueWrapper
-      highlightClueBackground={hightlightClueBackground}
+      highlightClueBackground={highlightClueBackground}
       highlight={
         focused && direction === selectedDirection && number === selectedNumber
       }

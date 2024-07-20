@@ -81,7 +81,8 @@ export const crosswordProviderPropTypes = {
     /**
      * background color for the clues that are currently selected
      */
-    hightlightClueBackground: PropTypes.string,
+    highlightClueBackground: PropTypes.string,
+
     /** background color for the cells with the correct answer */
     correctBackground: PropTypes.string,
   }),
