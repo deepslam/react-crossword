@@ -21,7 +21,7 @@ const themeContext = {
   textColor: '#666',
   numberColor: 'red',
   focusBackground: '#f88',
-  highlightBackground: '#fdd',
+  highlightCellBackground: '#fdd',
 };
 
 const sizeContext = {
@@ -110,7 +110,7 @@ it('renders focus background when focused', () => {
 it('renders highlight background when highlighted', () => {
   const { container } = render(<CellHelper {...defaultProps} highlight />);
   const rect = container.querySelector('rect');
-  expect(rect?.getAttribute('fill')).toBe(themeContext.highlightBackground);
+  expect(rect?.getAttribute('fill')).toBe(themeContext.highlightCellBackground);
 });
 
 it('renders focus background when focused and highlighted', () => {

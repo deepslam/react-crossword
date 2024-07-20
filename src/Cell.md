@@ -18,7 +18,7 @@ const themeContext = {
   textColor: 'rgb(0,0,0)',
   numberColor: 'rgba(0,0,0, 0.25)',
   focusBackground: 'rgb(255,255,0)',
-  highlightBackground: 'rgb(255,255,204)',
+  highlightCellBackground: 'rgb(255,255,204)',
 };
 
 const sizeContext = {

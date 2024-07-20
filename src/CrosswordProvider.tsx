@@ -74,10 +74,14 @@ export const crosswordProviderPropTypes = {
     focusBackground: PropTypes.string,
     /**
      * background color for the cells in the answer the player is working on,
-     * helps indicate in which direction focus will be moving; also used as a
-     * background on the active clue
+     * helps indicate in which direction focus will be moving;
      */
-    highlightBackground: PropTypes.string,
+    highlightCellBackground: PropTypes.string,
+
+    /**
+     * background color for the clues that are currently selected
+     */
+    hightlightClueBackground: PropTypes.string,
     /** background color for the cells with the correct answer */
     correctBackground: PropTypes.string,
   }),
@@ -319,7 +323,8 @@ const defaultTheme: CrosswordProviderProps['theme'] = {
   textColor: 'rgb(0,0,0)',
   numberColor: 'rgba(0,0,0, 0.25)',
   focusBackground: 'rgb(255,255,0)',
-  highlightBackground: 'rgb(255,255,204)',
+  highlightCellBackground: 'rgb(255,255,204)',
+  highlightClueBackground: 'rgb(255,255,204)',
   correctBackground: 'rgb(115, 182, 43)',
 };
 

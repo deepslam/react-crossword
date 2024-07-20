@@ -7,7 +7,7 @@ import {
 
 <ThemeProvider
   theme={{
-    highlightBackground: 'rgb(255,255,204)',
+    highlightCellBackground: 'rgb(255,255,204)',
   }}
 >
   <CrosswordContext.Provider

@@ -64,7 +64,7 @@ export default function Cell({
     numberColor,
     focusBackground,
     correctBackground,
-    highlightBackground,
+    highlightCellBackground,
   } = useContext(ThemeContext);
   const { selectedNumber, selectedPosition, selectedDirection } =
     useContext(CrosswordContext);
@@ -125,7 +125,7 @@ export default function Cell({
               : focus
               ? focusBackground
               : highlight
-              ? highlightBackground
+              ? highlightCellBackground
               : cellBackground
           }
           stroke={cellBorder}
