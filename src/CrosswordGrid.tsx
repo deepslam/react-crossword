@@ -22,7 +22,8 @@ const defaultTheme = {
   textColor: 'rgb(0,0,0)',
   numberColor: 'rgba(0,0,0, 0.25)',
   focusBackground: 'rgb(255,255,0)',
-  highlightBackground: 'rgb(255,255,204)',
+  highlightCellBackground: 'rgb(255,255,204)',
+  highlightClueBackground: 'rgb(255,255,204)',
   correctBackground: 'rgb(115, 182, 43)',
 };
 
@@ -59,7 +60,7 @@ const CrosswordGridPropTypes = {
     /** background color for the cells in the answer the player is working on,
      * helps indicate in which direction focus will be moving; also used as a
      * background on the active clue  */
-    highlightBackground: PropTypes.string,
+    highlightCellBackground: PropTypes.string,
   }),
 };
 

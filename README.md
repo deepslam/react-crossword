@@ -84,17 +84,19 @@ The `Crossword` component calculates the needed grid size from the data itself, 
 
 One other major difference (and advantage) to this crossword component is that it is very "stylable"... as many of the styling properties as possible are exposed so that you can create any look you want for the crossword. The `Crossword` component makes use of [styled-components' `ThemeProvider`](https://styled-components.com/docs/advanced#theming) and offers the following properties to control colors and layout:
 
-| theme property        | default               | description                                                                                                                                                                 |
-| --------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `columnBreakpoint`    | `'768px'`             | browser-width at which the clues go from showing beneath the grid to showing beside the grid.                                                                               |
-| `gridBackground`      | `'rgb(0,0,0)'`        | overall background color (fill) for the crossword grid. Can be `'transparent'` to show through a page background image.                                                     |
-| `cellBackground`      | `'rgb(255,255,255)'`  | background for an answer cell                                                                                                                                               |
-| `cellBorder`          | `'rgb(0,0,0)'`        | border for an answer cell                                                                                                                                                   |
-| `textColor`           | `'rgb(0,0,0)'`        | color for answer text (entered by the player)                                                                                                                               |
-| `numberColor`         | `'rgba(0,0,0, 0.25)'` | color for the across/down numbers in the grid                                                                                                                               |
-| `focusBackground`     | `'rgb(255,255,0)'`    | background color for the cell with focus, the one that the player is typing into                                                                                            |
-| `correctBackground`   | `'rgb(115, 182, 43)'` | background color for the cells with the correct answer                                                                                                                      |
-| `highlightBackground` | `'rgb(255,255,204)'`  | background color for the cells in the answer the player is working on, helps indicate in which direction focus will be moving; also used as a background on the active clue |
+| theme property            | default               | description                                                                                                                    |
+| ------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `columnBreakpoint`        | `'768px'`             | browser-width at which the clues go from showing beneath the grid to showing beside the grid.                                  |
+| `gridBackground`          | `'rgb(0,0,0)'`        | overall background color (fill) for the crossword grid. Can be `'transparent'` to show through a page background image.        |
+| `cellBackground`          | `'rgb(255,255,255)'`  | background for an answer cell                                                                                                  |
+| `cellBorder`              | `'rgb(0,0,0)'`        | border for an answer cell                                                                                                      |
+| `textColor`               | `'rgb(0,0,0)'`        | color for answer text (entered by the player)                                                                                  |
+| `numberColor`             | `'rgba(0,0,0, 0.25)'` | color for the across/down numbers in the grid                                                                                  |
+| `focusBackground`         | `'rgb(255,255,0)'`    | background color for the cell with focus, the one that the player is typing into                                               |
+| `correctBackground`       | `'rgb(115, 182, 43)'` | background color for the cells with the correct answer                                                                         |
+| `highlightCellBackground` | `'rgb(255,255,204)'`  | background color for the cells in the answer the player is working on, helps indicate in which direction focus will be moving; |
+
+| `highlightClueBackground` | `'rgb(255,255,204)'` | background color used as a background on the active clue |
 
 Note that these values can be provided either via `ThemeProvider`, or directly as a `theme` property on the `Crossword` component itself. (And further, if you're not using styled-components, but want to make use of `ThemeProvider`, this library re-exports `ThemeProvider` so you can pull it from here.)
 
